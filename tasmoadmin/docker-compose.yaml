@@ -1,0 +1,25 @@
+version: '3.7'
+
+volumes:
+    tasmoadmin-data:
+      driver: local
+      driver_opts:
+        type: "nfs"
+        o: addr=${NFS_HOST},rw,nfsvers=4
+        device: ":${NFS_PATH}tasmoadmin/data"
+
+services:
+  tasmoadmin:
+    image: raymondmm/tasmoadmin
+    ports:
+      - 5555:80
+    volumes:
+      - tasmoadmin-data:/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.60'
+          memory: 128M
+        reservations:
+          cpus: '0.30'
+          memory: 64M
