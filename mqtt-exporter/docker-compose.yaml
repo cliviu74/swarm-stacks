@@ -1,0 +1,11 @@
+version: "3.5"
+
+services:
+  mqtt-exporter:
+    image: sapcc/mosquitto-exporter
+    environment:
+      - BROKER_ENDPOINT=${BROKER_ENDPOINT}
+      - MQTT_USER=${MQTT_USER}
+      - MQTT_PASS=${MQTT_PASS}
+    ports:
+      - 9234:9234
