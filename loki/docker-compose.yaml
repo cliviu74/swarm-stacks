@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  loki:
+    image: grafana/loki:2.4.1
+    ports:
+      - "3100:3100"
+    command: -config.file=/loki-config
+    volumes:
+      - loki-data:/loki
+    configs:
+      - loki_config
+
+  promtail:
+    image: grafana/promtail:2.4.1
+    volumes:
+      - /var/log:/var/log
+      - promtail-config:/config
+    command: -config.file=/config/config.yml
+
+configs:
+  loki_config:
+    external: true
+
+volumes:
+  loki-config:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: addr=${NFS_HOST},rw,nfsvers=4
+      device: ":${NFS_PATH}docker/loki/config"
+
+  loki-data:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: addr=${NFS_HOST},rw,nfsvers=4
+      device: ":${NFS_PATH}docker/loki/data"
