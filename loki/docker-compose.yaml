@@ -1,25 +1,30 @@
-version: "3"
+version: "3.5"
 
 services:
   loki:
     image: grafana/loki:2.4.1
     ports:
       - "3100:3100"
-    command: -config.file=/loki-config
+    command: -config.file=/loki-config.yaml
     volumes:
       - loki-data:/loki
     configs:
-      - loki_config
+      - loki-config.yaml
 
   promtail:
     image: grafana/promtail:2.4.1
+    ports:
+      - "1514:1514"
     volumes:
       - /var/log:/var/log
-      - promtail-config:/config
-    command: -config.file=/config/config.yml
+    configs:
+      - promtail-config.yaml
+    command: -config.file=/promtail-config.yaml
 
 configs:
-  loki_config:
+  loki-config.yaml:
+    external: true
+  promtail-config.yaml:
     external: true
 
 volumes:
