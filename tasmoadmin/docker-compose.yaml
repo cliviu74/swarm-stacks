@@ -10,7 +10,7 @@ volumes:
 
 services:
   tasmoadmin:
-    image: raymondmm/tasmoadmin
+    image: ghcr.io/tasmoadmin/tasmoadmin:latest
     ports:
       - 5555:80
     volumes:
