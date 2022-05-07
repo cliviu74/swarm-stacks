@@ -18,6 +18,7 @@ services:
     ports:
       - "1514:1514"
     volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers
       - /var/log:/var/log
     configs:
       - promtail-config.yaml
