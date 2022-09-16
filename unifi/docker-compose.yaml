@@ -5,7 +5,7 @@ volumes:
     driver: local
     driver_opts:
       type: "nfs"
-      o: addr=${NFS_SERVER},rw,nfsvers=4
+      o: addr=${NFS_HOST},rw,nfsvers=4
       device: ":${NFS_PATH}unifi/config"
 
 services:
