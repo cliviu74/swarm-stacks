@@ -20,6 +20,7 @@ services:
     volumes:
       - /var/lib/docker/containers:/var/lib/docker/containers
       - /var/log:/var/log
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     configs:
       - promtail-config.yaml
     command: -config.file=/promtail-config.yaml
