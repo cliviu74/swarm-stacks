@@ -18,7 +18,6 @@ services:
     ports:
       - "1514:1514"
     volumes:
-      - /var/lib/docker/containers:/var/lib/docker/containers
       - /var/log:/var/log
       - /var/run/docker.sock:/var/run/docker.sock:ro
     configs:
