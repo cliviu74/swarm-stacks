@@ -1,0 +1,20 @@
+---
+version: "3"
+volumes:
+    homer-data:
+      driver: local
+      driver_opts:
+        type: "nfs"
+        o: addr=${NFS_HOST},rw,nfsvers=4
+        device: ":${NFS_PATH}homer/data"
+
+services:
+  homer:
+    image: b4bz/homer
+    volumes:
+      - homer-data:/www/assets
+    ports:
+      - 8083:8080
+    user: 1000:1000
+    environment:
+      - INIT_ASSETS=1
