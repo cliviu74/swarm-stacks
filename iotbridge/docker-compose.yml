@@ -16,8 +16,8 @@ services:
       - TZ=Europe/Dublin
     devices:
       # Make sure this matched your adapter location
-      - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/zigbee
-
+      # - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/zigbee
+      - /dev/ttyUSB0:/dev/zigbee
  
   zwave-js-ui:
     container_name: zwave-js-ui
@@ -35,7 +35,8 @@ services:
     devices:
       # Do not use /dev/ttyUSBX serial devices, as those mappings can change over time.
       # Instead, use the /dev/serial/by-id/X serial device for your Z-Wave stick.
-      - '/dev/serial/by-id/usb-0658_0200-if00:/dev/zwave'
+      # - '/dev/serial/by-id/usb-0658_0200-if00:/dev/zwave'
+      - '/dev/ttyACM0:/dev/zwave'
     volumes:
       - /data/zwave-js-ui/store:/usr/src/app/store
     ports:
