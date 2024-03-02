@@ -46,9 +46,9 @@ services:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
-      - '6180:80'
-      - '6181:81'
-      - '61443:443'
+      - '80:80'
+      - '81:81'
+      - '443:443'
     volumes:
       - /data/nginx-proxy-manager/data:/data
       - /data/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
