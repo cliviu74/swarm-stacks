@@ -44,6 +44,7 @@ services:
       - '3000:3000' # port for Z-Wave JS websocket server
 
   nginx-proxy-manager:
+    container_name: nginx-proxy-manager
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
