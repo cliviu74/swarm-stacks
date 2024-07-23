@@ -54,3 +54,16 @@ services:
     volumes:
       - /data/nginx-proxy-manager/data:/data
       - /data/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+
+  promtail:
+    image: grafana/promtail:latest
+    deploy:
+      mode: global
+    ports:
+      - "1514:1514"
+    volumes:
+      - /var/log:/var/log
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes:
+      - /data/promtail/promtail-config.yaml:/promtail-config.yaml
+    command: -config.file=/promtail-config.yaml
