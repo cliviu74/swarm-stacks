@@ -64,6 +64,5 @@ services:
     volumes:
       - /var/log:/var/log
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    volumes:
       - /data/promtail/promtail-config.yaml:/promtail-config.yaml
     command: -config.file=/promtail-config.yaml
